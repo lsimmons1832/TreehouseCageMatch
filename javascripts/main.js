@@ -7,6 +7,21 @@ $(document).ready(function() {
 		let player1 = [];
 		let player2 = [];
 
+		const seperatePlayers = () =>{
+			$.each(bothPlayers, (index, val) => {
+				console.log('ind',index);
+				console.log('val',val);
+				if(index === 0){
+					console.log('I made it past the if');
+					player1.push(val);
+				}else if(index === 1){
+					player2.push(val);
+				}
+					console.log('player1 array', player1);
+					console.log('player2 array', player2);
+				}
+			});
+		};
 
 
 
@@ -42,11 +57,14 @@ $(document).ready(function() {
 
 Promise.all([loadPlayer1(), loadPlayer2()])
 	.then((players) =>{
-			console.log(players);
-			}).catch((errors) =>{
+			bothPlayers = players;
+			console.log("this is the data being pushed", players);
+			console.log("this is the master array players", bothPlayers);
+			seperatePlayers();
+			}).catch((errors) => {
+				alert(errors);
 			console.log(errors);
-		})
-		console.log("players", bothPlayers);
+		});
 	});
 
 //   loadPlayer1().then((player1) => {
