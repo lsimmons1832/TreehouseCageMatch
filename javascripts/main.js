@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$('#start').click(() => {
-		console.log('I clicked the button');
+		// console.log('I clicked the button');
 		let p1 = $('#p1').val();
 		let p2 = $('#p2').val();
 		let bothPlayers = [];
@@ -18,40 +18,38 @@ $(document).ready(function() {
 					player2.push(val);
 				}
 			});
-			//determineWinner();
 			getPoints();
 		};
 
-		// const determineWinner = () =>{
-		// 	const totalPointsP1 = player1["points"];
-	 //  	const totalPointsP2 = player2["points"];
-  // 		if(totalPointsP1 > totalPointsP2){
-  // 			isWinner = player1.name;
-  // 		}else{
-  // 			isWinner = player2.name;
-  // 		}
-		// }
-
   const getPoints = () => { 
-  	$.each(player1.points, (key, value)=>{
-  		// player1.points = [];
-  		totalPointsP1 = player1.points;
-  	});
-  	console.log('totalPointsP1', player1);
+  	for (var i = 0; i < player1.length; i++) {
+  		totalPointsP1.push(player1[i].points.total);
+  	}
+  	// console.log('totalPointsP1', totalPointsP1);
+  	for (var i = 0; i < player2.length; i++) {
+  		totalPointsP2.push(player2[i].points.total);
+  	}
+  	// console.log('totalPointsP2', totalPointsP2);
+  	determineWinner();
   };
-    // const totalPointsP1 = player1["points"];
-    // const p1Number = totalPointsP1.indexOf(points.total);
-    // const totalPointsP2 = player2["points"];
-    // const p2Number = totalPointsP2.indexOf(points.total);  
-    // if (p1Number > p2Number){ 
-    //   isWinner = player1.name;
-    // } else {
-    //   isWinner = player2.name;
-    // }
-  // };
-// console.log("show me player1", player1);
-// console.log("show me player2", player2);
-// console.log("who wins?", isWinner);
+
+		const determineWinner = () =>{
+			for (var i = 0; i < player1.length; i++) {
+				var op1 = player1[i].name;
+				for (var j = 0; j < player2.length; j++) {
+					var op2 = player2[j].name;
+				}
+			}
+  		if(totalPointsP1> totalPointsP2){
+  			isWinner = op1;
+  		}else{
+  			isWinner = op2;
+  		}
+  		// console.log("player1", totalPointsP1.total);
+  		// console.log("player2", totalPointsP2.total);
+  		// console.log("who is the winner?", isWinner);
+		}
+
 
 
 
