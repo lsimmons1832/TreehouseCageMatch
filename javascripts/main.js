@@ -33,11 +33,12 @@ $(document).ready(function() {
 		// }
 
   const getPoints = () => { 
-  	player1.forEach((value)=>{
-  		player1.points = [];
-  		totalPointsP1.push(value);
+  	$.each(player1.points, (key, value)=>{
+  		// player1.points = [];
+  		totalPointsP1 = player1.points;
   	});
-  	console.log(totalPointsP1);
+  	console.log('totalPointsP1', player1);
+  };
     // const totalPointsP1 = player1["points"];
     // const p1Number = totalPointsP1.indexOf(points.total);
     // const totalPointsP2 = player2["points"];
@@ -47,7 +48,7 @@ $(document).ready(function() {
     // } else {
     //   isWinner = player2.name;
     // }
-  };
+  // };
 // console.log("show me player1", player1);
 // console.log("show me player2", player2);
 // console.log("who wins?", isWinner);
@@ -93,4 +94,4 @@ Promise.all([loadPlayer1(), loadPlayer2()])
 
 
 
- });
+});
