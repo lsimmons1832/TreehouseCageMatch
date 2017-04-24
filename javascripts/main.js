@@ -9,6 +9,10 @@ $(document).ready(function() {
 		let isWinner = "";
 		let totalPointsP1 = [];
 		let totalPointsP2 = [];
+		let p1Badge = [];
+		let p2Badge = [];
+		let op1b;
+		let op2b = "";
 
 		const seperatePlayers = () =>{
 			$.each(bothPlayers, (index, val) => {
@@ -24,32 +28,50 @@ $(document).ready(function() {
   const getPoints = () => { 
   	for (var i = 0; i < player1.length; i++) {
   		totalPointsP1.push(player1[i].points.total);
+  		p1Badge.push(player1[i].badges);
   	}
   	// console.log('totalPointsP1', totalPointsP1);
-  	for (var i = 0; i < player2.length; i++) {
-  		totalPointsP2.push(player2[i].points.total);
+  	for (var j = 0; j < player2.length; j++) {
+  		totalPointsP2.push(player2[j].points.total);
+  		p2Badge.push(player1[j].badges);
   	}
   	// console.log('totalPointsP2', totalPointsP2);
   	determineWinner();
   };
 
+
 		const determineWinner = () =>{
+			//determine winner name
 			for (var i = 0; i < player1.length; i++) {
 				var op1 = player1[i].name;
 				for (var j = 0; j < player2.length; j++) {
 					var op2 = player2[j].name;
+			  		if(totalPointsP1> totalPointsP2){
+			  			isWinner = op1;
+			  		}else{
+			  			isWinner = op2;
+			  		}
 				}
 			}
-  		if(totalPointsP1> totalPointsP2){
-  			isWinner = op1;
-  		}else{
-  			isWinner = op2;
-  		}
-  		// console.log("player1", totalPointsP1.total);
+			//get winner badge
+			for (var k = 0; k < p1Badge.length; k++) {
+				op1b = p1Badge[k].icon_url;
+			}
+			for (var l = 0; l < p2Badge.length; l++) {
+				op2b = p2Badge[l].icon_url;
+			}
+  		console.log("player1", p1Badge);
   		// console.log("player2", totalPointsP2.total);
   		// console.log("who is the winner?", isWinner);
-		}
+  		writeToDom();
+		};
 
+		const writeToDom = () => {
+			$('.container').append(`<h1>`+ isWinner + ` Wins! <h1>`);
+			$('.img1').attr('src', op1b);
+			$('.op1').append(totalPointsP1);
+			$('.op2').append(totalPointsP2);
+		};
 
 
 
